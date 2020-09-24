@@ -75,10 +75,72 @@
     <!--Top User Info Row -->
     <div class="row user-info">
       <div class="col-md-1"></div>
-      <div class="col-md-4 flex-info flex-info-left">
+      <div class="col-md-4 flex-info flex-item align-center">
         <!--Name of User -->
         <div class="user-icon flex-item"></div>
         <div class="flex-item"><h1>{{person}}</h1></div>
+      </div>
+      <div class="col-md-6 flex-info flex-info-right">
+        <div class="flex-item">
+          {% if total_score < 0 %}
+          <h3>Total Score: <span style="color:red"> {{total_score }}</span> </h3>
+          {% endif %}
+          {% if total_score > 0 %}
+          <h3>Total Score: <span style="color:green"> {{total_score}}</span></h3>
+          {% endif %}
+          {% if total_score = 0 %}
+          <h3>Total Score: {{total_score }}</h3>
+          {% endif %}
+        </div>
+      </div>
+      <div class="col-md-1"></div>
+    </div><!-- End Top User Info Row -->
+
+    <div class="row user-info">
+      <div class="col-md-1"></div>
+      <div class="col-md-10">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Week</th>
+              {% for results in results_scores %}
+              <th>{{ results.0.num }}</th>
+              {% endfor %}
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Score</th>
+              {% for results in results_scores %}
+              <td class="text-center">{{ results.1 }}</td>
+              {% endfor %}
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-md-1"></div>
+    </div>
+
+    <!--Score  Row -->
+    <div class="row user-info">
+      <div class="col-md-1"></div>
+      <div class="col-md-4">
+        <!--Name of User -->
+        <div class="flex-item">
+          <!--My League -->
+              <h4>My Leagues</h4>
+              <div class="league-box">
+                {% if my_leagues %}
+                {% for league in my_leagues %}
+                <ul>
+                  <li><a href="/league/{{ league.id }}/">{{ league }}</a></li>
+                  {% endfor %}
+                  {% else %}
+                  <h3>No League Available</h3>
+                </ul>
+                {% endif %}
+              </div>
+        </div>
       </div>
       <div class="col-md-6 flex-info flex-info-right">
         <div class="flex-item">
@@ -96,61 +158,6 @@
     </div><!-- End Top User Info Row -->
 
     <div class="clearfix"></div>
-    <div class="row league-info">
-      <div class="col-md-1"></div>
-
-      <!--My League -->
-      <div class="col-md-2 col-xs-12 flex-info-league">
-        <div class="flex-item">
-          <h4>My Leagues</h4>
-          <div class="league-box">
-            {% if my_leagues %}
-            {% for league in my_leagues %}
-            <ul>
-              <li><a href="/league/{{ league.id }}/">{{ league }}</a></li>
-              {% endfor %}
-              {% else %}
-              <h3>No League Available</h3>
-            </ul>
-            {% endif %}
-          </div>
-        </div>
-      </div>
-
-       <!--Results -->
-      <div class="col-md-8 flex-league-right flex-item">
-          <div>
-            {% if total_score < 0 %}
-            <h3>Total Score: <span style="color:red"> {{total_score }}</span> </h3>
-            {% endif %}
-            {% if total_score > 0 %}
-            <h3>Total Score: <span style="color:green"> {{total_score}}</span></h3>
-            {% endif %}
-            {% if total_score = 0 %}
-            <h3>Total Score: {{total_score }}</h3>
-            {% endif %}
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th>Week</th>
-                  {% for results in results_scores %}
-                  <th>{{ results.0.num }}</th>
-                  {% endfor %}
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Score</td>
-                  {% for results in results_scores %}
-                  <td>{{ results.1 }}</td>
-                  {% endfor %}
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      <div class="col-md-1"></div>
-    </div><!-- End Top User Info Row -->
 
     <!-- Bottom Bet Card -->
     <div class="row league-info">
@@ -166,9 +173,9 @@
                 <span><a class="prev" href="#">&lt;&lt;</a></span>
                 <ul>
                   {% for week_tuple in past_week_data %}
-                  <li><a href="#"> Week {{ week_tuple.0.num }}</a></li>
+                  <li><a href="#">{{ week_tuple.0.num }}</a></li>
                   {% endfor %}
-                  <li class="active"><a href="#"> Week {{active_week.num}} (Current)</a></li>
+                  <li class="active"><a href="#"> {{active_week.num}}</a></li>
                 </ul>
                 <span><a class="next" href="#">>></a></span>
               </nav>
