@@ -12,6 +12,7 @@
     }
     .flex-item {
         text-align: center;
+        margin: 10px 0px 0px 10px;
     }
     .table-custom th,
     .table-custom td {
@@ -76,7 +77,7 @@
 }
 .flex-item {
     margin-left: 10px;
-    /* padding: 10px; */
+    padding: 10px;
 }
 .league-info {
     margin: 0px 50px 0px 50px;
@@ -93,10 +94,10 @@
 }
 .flex-item h4 {
     text-align: center;
-}
+} */
 /* .league-info{
     height: 400px;
-} */
+}
 .league-box {
     /* outline: 2px solid purple; */
     /* height: 25rem;
