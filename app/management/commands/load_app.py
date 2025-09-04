@@ -18,7 +18,7 @@ class Command(BaseCommand):
 
 
 	def load_games(self):
-		input_data = pd.read_csv("./app/management/Data/2024Games.csv", header=0).loc[:, :'Line']
+		input_data = pd.read_csv("./app/management/Data/2025Games.csv", header=0).loc[:, :'Line']
 		my_data = input_data.drop(["Line"],axis=1)
 
 		# for (ind, line), in numpy.ndenumerate(my_data.to_numpy()):
@@ -28,7 +28,7 @@ class Command(BaseCommand):
 			team1 = Team.objects.get(name = line[6])
 			team2 = Team.objects.get(name = line[5])
 			
-			week, created = Week.objects.get_or_create(year=2021, num = line[1])
+			week, created = Week.objects.get_or_create(year=2025, num = line[1])
 
 			date_string = (str(line[3]) + str(line[0]) + str(line[4]))
 			date_time = datetime.strptime(date_string, '%B %d%Y%I:%M %p')
