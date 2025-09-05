@@ -15,7 +15,7 @@ numpy==1.26
 oauthlib==1.0.3
 # onboard==1.2.0
 padme==1.1.1
-pandas==1.2.4
+pandas==2.1.1
 psycopg2==2.9.7
 python-dateutil==2.7.3
 python-decouple==3.1
